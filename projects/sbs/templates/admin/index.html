@@ -1,0 +1,30 @@
+{% extends 'layouts/_base.html' %}
+{% block css %}
+<style type="text/css">
+    body{
+        background: #fff;
+    }
+</style>
+{% endblock %}
+
+
+{% block title %}快捷导航页{% endblock %}
+
+
+{% block bd %}
+<div class="container" style="margin-top: 20px;">
+<h1>模块页面快速导航 | <a href="{{ _site }}changelog/sbs">项目改动记录</a></h1>
+<hr />
+<ul>
+<li><a href="{{ BASE_URL }}login">管理员登录</a></li>
+<li><a href="{{ BASE_URL }}account">管理员账户管理(修改密码)</a></li>
+<li><a href="{{ BASE_URL }}user">用户管理</a></li>
+<li><a href="{{ BASE_URL }}content">内容管理</a></li>
+</ul>
+</div>
+{% endblock %}
+
+{% block changelog %}
+{{ parent() }}
+* 5-22 建立登录页面
+{% endblock %}

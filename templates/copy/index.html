@@ -1,0 +1,12 @@
+{% extends 'layouts/_base.html' %}
+
+{% block bd %}
+<h1>Hello! 开始新的前端项目啦~</h1>
+<p>开始编辑 projects/{{ PROJECT }} 下的文件。想知道当前页改了什么吗？<a href="?changelog=1">结尾加?changelog=1</a></p>
+{% endblock %}
+
+{% block changelog %}
+{{ parent() }}
+2012-5-21
+* 修改了XXXXX
+{% endblock %}

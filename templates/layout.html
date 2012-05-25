@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ _site }}statics/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="{{ _site }}statics/bootstrap/css/bootstrap-responsive.css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    {% block css %}{% endblock %}
+</head>
+<body>
+
+<div id="hd">
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="{{ _site }}">SUIFramework</a>
+
+                <!--<ul class="nav">
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                </ul>-->
+                
+                {% if _login %}
+                <ul class="nav pull-right">
+                    <li><a href="{{ _site }}sui_login?do=exit"><span class="icon icon-off icon-white"></span> 退出登录</a></li>
+                </ul>
+                {% else %}
+                <form class="navbar-form pull-right" method="post" action="{{ _site }}sui_login">
+                    <span class="icon icon-lock icon-white" style="margin-top: 5px;"></span>
+                    <input name="password" type="password" placeholder="管理密码,回车登录" class="span2" />
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include '_flash.html' %}
+
+<div id="bd" style="margin-top: 90px;">
+    <div class="container">
+    {% block bd %}{% endblock %}
+    </div>
+</div>
+
+
+
+<div id="ft" style="padding-bottom:60px;">
+    <div class="container">
+        <hr />
+        <div class="row">
+            <div class="span4">
+                <p><span class="icon icon-user"></span> 前端组成员</p>
+                <ul>
+                    <li><a href="mailto:liuyanfeng@eetop.com">liuyanfeng</a></li>
+                    <li><a href="mailto:daihuan@eetop.com">daihuan</a></li>
+                    <li><a href="mailto:linyu@eetop.com">linyu</a></li>
+                </ul>
+            </div>
+            
+            <div class="span4">
+                <p><span class="icon icon-book"></span> 平台文档</p>
+                <ul>
+                    <li><a href="{{ _site }}read_page/README">概要说明</a></li>
+                    <li><a href="{{ _site }}read_page/DESIGNER">To 前端人员</a></li>
+                    <li><a href="{{ _site }}read_page/DEVELOPER">To 程序开发人员</a></li>
+                    <li><a href="{{ _site }}read_page/CHANGE">变更文档</a></li>
+                </ul>
+                
+                {% if _login %}
+                <p><span class="icon icon-wrench"></span> 管理相关</p>
+                <ul>
+                    <li><a href="javascript:;" onclick="SVNCommit();">SVN代码更新</a></li>
+                </ul>
+                {% endif %}
+            </div>
+            
+            <div class="span4">
+                <p><span class="icon icon-book"></span> 平台驱动</p>
+                <ul>
+                    <li><a target="_blank" href="http://twig.sensiolabs.org/documentation">Twig</a></li>
+                    <li><a target="_blank" href="http://twitter.github.com/bootstrap/index.html">Twitter Bootstrap</a></li>
+                    <li><a target="_blank" href="http://www.slimframework.com/documentation/stable">SlimPHP</a></li>
+                    <li>
+                        <a target="_blank" href="http://www.lesscss.net/">{{ '{' }}Less{{ '}' }}</a> - 
+                        <a target="_blank" href="http://leafo.net/lessphp/#documentation">for PHP</a></li>
+                    <li><a target="_blank" href="http://www.redbeanphp.com/manual/">RedbeanPHP</a></li>
+                    <li><a target="_blank" href="http://daringfireball.net/projects/markdown/">Markdown</a></li>
+                </ul>
+            </div>
+            
+            <div class="modal" id="SVNUpdate" style="display: none">
+                <div class="modal-header">
+                  <button class="close" data-dismiss="modal">×</button>
+                  <h3>SVN更新信息</h3>
+                </div>
+                <div class="modal-body">
+                  <iframe class="content" style="width: 100%; height: 100%; border: none"></iframe>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+<!--js-->
+<script type="text/javascript" src="{{ _site }}statics/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+var SVNCommit = function(){
+    $('#SVNUpdate .content').attr('src', 'http://192.168.10.200:8001/');
+    $('#SVNUpdate').modal({backdrop: false});
+};
+</script>
+{% block js %}{% endblock %}
+<!--/js-->
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% extends 'layouts/_base.html' %}
+
+{% block hd %}
+<div class="admin_top">
+<div class="banner">
+  <a href="{{ BASE_URL }}index" class="logo"></a>
+</div>
+<div class="navbar clearfix">
+  <div class="navbar-inner">
+      <ul class="nav leftnav">
+        <li {% if MODULE == 'user' %}class="active"{% endif %}><a href="{{ BASE_URL }}user">用户管理</a></li>
+        <li {% if MODULE == 'content' %}class="active"{% endif %}><a href="{{ BASE_URL }}content">网站内容</a></li>
+      </ul>
+	  <ul class="nav pull-right">
+        <li class="divider-vertical"></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="icon-cog icon-white"></span> 管理员
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+			<li><a href="#"><span class="icon-globe"></span> 浏览首页</a></li>
+            <li><a href="{{ BASE_URL }}account"><span class="icon-wrench"></span> 账号设置</a></li>
+			<li><a href="#"><span class="icon-question-sign"></span> 帮助文档</a></li>
+			<li><a href="{{ BASE_URL }}login"><span class="icon-off"></span> 安全退出</a></li>
+          </ul>
+        </li>
+	  </ul>
+  </div>
+</div>
+</div>
+{% endblock %}
+
+{% block bd %}
+<div class="admin_main">
+<div class="left_bar">{% block logged_in_bar %}{% endblock %}</div>
+<div class="right_bd">{% block logged_in_bd %}{% endblock %}</div>
+</div>
+{% endblock %}

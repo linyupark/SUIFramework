@@ -1,0 +1,111 @@
+{% extends 'layouts/logged_in.html' %}
+
+{% block title %}内容管理{% endblock %}
+
+{% block js_bottom %}
+<script type="text/javascript" src="{{ JS_URL }}dialog/plugins/iframeTools.js"></script>
+<script type="text/javascript">
+var company_handler = function(id, flag){
+    var msg = ['屏蔽？', '删除？'];
+    var url = ['屏蔽URL', '删除URL']
+    art.dialog({
+        id: 'company_handler',
+        content: msg[flag],
+        ok: function(){
+            alert('确定操作');
+            $.get(url[flag], function(resp){
+                
+            });
+        },
+        cancel: function(){
+            alert('取消操作!');
+        }
+    });
+}
+var project_handler = function(id, flag){
+    var msg = ['屏蔽？', '删除？'];
+    var url = ['屏蔽URL', '删除URL']
+    art.dialog({
+        id: 'project_handler',
+        content: msg[flag],
+        ok: function(){
+            alert('确定操作');
+            $.get(url[flag], function(resp){
+                
+            });
+        },
+        cancel: function(){
+            alert('取消操作!');
+        }
+    });
+}
+var company_check = function(id, flag){
+    var msg = ['设为未审核？', '设为已通过？', '驳回申请？'];
+    var url = ['未审核URL', '通过URL'];
+    if(flag < 2)
+    {
+        art.dialog({
+            id: 'company_check',
+            content: msg[flag],
+            ok: function(){
+                alert('确定操作');
+                $.get(url[flag], function(resp){
+                    
+                });
+            },
+            cancel: function(){
+                alert('取消操作!');
+            }
+        });
+    }
+    else
+    {
+        art.dialog.open('{{ BASE_URL }}reject_form', { title:'请输入驳回理由', width:400,
+            ok: function(){
+                var iframe = this.iframe.contentWindow;
+                var content = iframe.document.getElementById('reject_content').value;
+                alert(content);
+            },
+            cancel: function(){
+                
+            }
+        });
+    }
+}
+</script>
+{% endblock %}
+
+
+{% block logged_in_bar %}
+
+<ul class="nav nav-list">
+  <li class="nav-header">内容管理</li>
+  <li class="{% if NAV.menu==1 %}active{% endif %}"><a href="?menu=1">企业</a></li>
+  <li class="{% if NAV.menu==2 %}active{% endif %}"><a href="?menu=2">项目</a></li>
+  <li class="divider"></li>
+  <li class="nav-header">审核管理</li>
+  <li class="{% if NAV.menu==3 %}active{% endif %}"><a href="?menu=3">企业 <span class="label label-important">10</span></a></li>
+  <li class="{% if NAV.menu==4 %}active{% endif %}"><a href="?menu=4">项目 <span class="label label-important">2</span></a></a></li>
+</ul>
+
+{% endblock %}
+
+{% block logged_in_bd %}
+    {% if NAV.menu == 1 %}
+    {% include 'includes/content/menu_1.html' %}
+    {% endif %}
+    {% if NAV.menu == 2 %}
+    {% include 'includes/content/menu_2.html' %}
+    {% endif %}
+    {% if NAV.menu == 3 %}
+    {% include 'includes/content/menu_3.html' %}
+    {% endif %}
+    {% if NAV.menu == 4 %}
+    {% include 'includes/content/menu_4.html' %}
+    {% endif %}
+{% endblock %}
+
+
+{% block changelog %}
+[+] 20120-5-23 * 初版
+{% endblock %}

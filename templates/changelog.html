@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block bd %}
+    
+    <div style="text-align: center">
+    <h1 class="">【{{ project.name }}】修改记录</h1>
+    </div>
+    
+    <hr />
+    
+    {% if not edit_log and _login %}
+    <!-- 提交记录 -->
+    <form class="well clearfix" method="post" action="">
+        <input type="hidden" name="number" value="{{ first_log.number|default(0) }}" />
+        <p class="pull-right span11"><textarea name="content" style="height: 200px; width:100%"></textarea></p>
+        <p class="pull-right span11"><input class="btn btn-large btn-primary pull-right" type="submit" value="添加记录" /></p>
+    </form>
+    {% endif %}
+    
+    
+    <!-- 记录展示 -->
+    {% for log in log_list %}
+    <div class="log_block">
+        <h2>
+            #{{ log.number }} <small>{{ log.date }}</small>
+            {% if _login %}
+                <p class="pull-right">
+                <a class="btn btn-danger" href="?del={{ log.id }}"><span class="icon icon-trash icon-white"></span></a>
+                <a class="btn btn-inverse" href="?edit={{ log.id }}#log_form"><span class="icon icon-pencil icon-white"></span></a>
+                </p>
+            {% endif %}
+        </h2>
+        {% if log.id == edit_log.id %}
+        <form class="well clearfix" method="post" action="">
+            <input type="hidden" name="number" value="{{ edit_log.number }}" />
+            <p class="pull-right"><textarea name="content" style="height: 300px;" class="span11">{{ edit_log.content }}</textarea></p>
+            <p class="pull-right">
+                <input class="btn btn-large btn-primary" type="submit" value="保存修改" />
+                <input class="btn btn-large" type="button" value="取消" onclick="location.href='?'" />
+            </p>
+        </form>
+        {% else  %}
+        <div class="content well">{{ log.content|markdown }}</div>
+        {% endif %}
+    </div>
+    {% else %}
+    <div style="text-align: center">还没有任何记录。</div>
+    {% endfor %}
+    
+    
+    
+{% endblock %}

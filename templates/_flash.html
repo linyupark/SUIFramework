@@ -1,0 +1,6 @@
+{% if _flash|length > 0 %}
+    {% for k,v in _flash %}
+    <div class="flash alert alert-{{ k }}" style="position: absolute;top:40px; text-align: center; font-weight: bold; margin: 0 10%; width: 80%;">{{ v }}</div>
+    {% endfor %}
+    <script>setTimeout(function(){$('.flash').fadeOut(3000)}, 1000);</script>
+{% endif %}

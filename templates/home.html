@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block js %}
+
+{% endblock %}
+
+{% block bd %}
+    
+<div class="row">
+
+<!-- 现有项目 -->
+<div class="span8 clearfix">
+    <h4>平台中的项目</h4>
+    <hr />
+    {% for p in project_list %}
+    <div class="btn-group pull-left">
+        <button class="btn btn-large btn-inverse dropdown-toggle" data-toggle="dropdown">{{ p.name }} ({{ p.folder }}) &nbsp; <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            {% for sub_folder in sub_folders[p.folder] %}
+            <li><a href="{{ _site }}{{p.folder}}/{{ sub_folder }}"><span class="icon icon-folder-open"></span> {{ sub_folder }}</a></li>
+            {%  endfor %}
+            <li class="divider"></li>
+            <li><a href="{{ _site }}changelog/{{ p.folder }}"><span class="icon icon-th-list"></span> 修改记录</a></li>
+        </ul>
+    </div>
+    {% else %}
+    <div class="alert alert-info">还没有项目呢，请先添加。</div>
+    {% endfor %}
+</div>
+
+<!-- 增加项目 -->
+<div class="span4">
+    <form class="well" method="post">
+        <label>项目名称</label>
+        <input type="text" name="name" class="span3" placeholder="中英文皆可">
+        
+        <label>目录名称</label>
+        <input type="text" name="folder" class="span3" placeholder="建议小写英文">
+
+        <p class="help-block">项目跟目录名称都不能有重复。</p>
+        <button type="submit" class="btn btn-primary">新建</button>
+    </form>
+</div>
+
+</div>
+
+
+    
+{% endblock %}

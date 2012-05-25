@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+<style type="text/css">
+#page_content *{
+    font-size: 14px;
+    line-height: 180%;
+}
+#page_content img{
+    float: right;
+    margin: 0 20px 20px 20px;
+    border: 2px dotted #eee;
+    padding: 10px;
+    box-shadow: 0 0 5px #555;
+}
+#page_content p{
+}
+#page_content h3,
+#page_content h1
+{
+    padding:10px 0;
+    font-size: 18px;
+    clear: both;
+}
+#page_content h1{
+    font-size: 36px;
+    margin: 0;
+    padding: 0;
+}
+#page_content h3{
+    margin: 20px 0;
+    padding-left: 10px;
+    border-bottom: 1px solid #666;
+}
+#page_content li{
+    margin-bottom: 10px;
+    list-style: square;
+}
+</style>
+{% endblock %}
+
+{% block bd %}
+
+<div id="page_content">
+{{ content|markdown }}
+</div>
+
+<p style="padding: 40px 0; text-align: center" class="clearfix">
+    <a href="javascript:history.back();" class="pull-left"><span class="icon  icon-circle-arrow-left"></span> 返回</a>
+    <a href="#" class="pull-right"><span class="icon  icon-circle-arrow-up"></span> 回到顶部</a>
+</p>
+    
+{% endblock %}

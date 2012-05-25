@@ -1,0 +1,206 @@
+::-webkit-input-placeholder { color:#dddddd; }
+:-moz-placeholder { color:#dddddd; }
+.placeholder { color:#dddddd; }
+body { background:#ffffff; }
+#hd .login_hd {
+  background:#202020 url(../img/login/title.jpg) no-repeat center center;
+  height:190px;
+}
+#hd .admin_top { height:100px; }
+#hd .admin_top .banner {
+  background:#202020;
+  height:60px;
+}
+#hd .admin_top .banner .logo {
+  background:url(../img/admin_logo.gif) no-repeat center center;
+  height:60px;
+  width:352px;
+  display:block;
+}
+#hd .admin_top .leftnav { padding-left:20%; }
+#bd {
+  background:#ffffff;
+  position:relative;
+}
+#bd .login_bd {
+  background:#202020;
+  height:500px;
+}
+#bd .login_form {
+  width:990px;
+  background:url(../img/login/form_bg.jpg) repeat-y center;
+}
+#bd .login_form form {
+  margin:40px auto 20px auto;
+  width:360px;
+  color:#cccccc;
+}
+#bd .login_form form a { color:#ffffff; }
+#bd .login_form .login_btn {
+  width:98px;
+  height:38px;
+  background:url(../img/login/btn.gif) no-repeat;
+  border:none;
+}
+#bd .login_form .btns {
+  text-align:center;
+  margin:40px 0;
+}
+#bd .form_shadow {
+  background:url(../img/login/form_shadow.jpg) no-repeat center;
+  height:62px;
+}
+#bd .card_career .card {
+  float:left;
+  border:1px solid #cccccc;
+  width:378px;
+  height:255px;
+}
+#bd .card_career .card .avatar {
+  float:right;
+  margin:10px;
+}
+#bd .card_career .card .info_list ul { list-style:none; }
+#bd .card_career .card .info_list ul li { margin-top:6px; }
+#bd .card_career .card .info_list ul .name {
+  color:#01a1ff;
+  font-size:25px;
+  font-weight:bold;
+  margin-top:30px;
+  padding-bottom:10px;
+}
+#bd .card_career .card .info_list ul .bold { font-weight:bold; }
+#bd .card_career .career_list { margin-left:390px; }
+#bd .card_career .career_list .career {
+  border:1px dotted #cccccc;
+  background:#f5f5f5;
+  margin-bottom:5px;
+}
+#bd .card_career .career_list .career ul {
+  margin:0;
+  padding:0;
+}
+#bd .card_career .career_list .career li {
+  display:inline-block;
+  list-style-position:inside;
+  *display:inline;
+  list-style:none;
+  margin-right:50px;
+  margin-left:0;
+  padding:10px;
+}
+#bd .card_career .career_list .career p { padding:0 10px; }
+#bd .sp { margin-top:40px; }
+#bd .link_list {
+  float:left;
+  width:30%;
+}
+#bd .link_list h4 {
+  padding:10px 0;
+  border-bottom:1px solid #eeeeee;
+}
+#bd .link_list ul { margin-top:10px; }
+#bd .push_list {
+  float:left;
+  width:30%;
+  margin-left:2%;
+}
+#bd .push_list h4 {
+  padding:10px 0;
+  border-bottom:1px solid #eeeeee;
+}
+#bd .push_list ul { margin-top:10px; }
+#bd .base_info .avatar {
+  float:left;
+  padding-bottom:30px;
+}
+#bd .base_info .avatar img {
+  padding:2px;
+  border:1px solid #eeeeee;
+}
+#bd .base_info .info ul {
+  float:left;
+  list-style:none;
+}
+#bd .base_info .info ul li {
+  margin-top:6px;
+  font-size:14px;
+}
+#bd .base_info .info ul .name {
+  font-size:22px;
+  font-weight:bold;
+  padding-bottom:10px;
+}
+#bd .base_info .info ul .handler {
+  margin:10px 0 0 0;
+  font-size:12px;
+}
+#bd .base_info p {
+  padding:0 0 10px;
+  clear:left;
+}
+#bd .admin_main {
+  background:#ffffff;
+  padding-bottom:100px;
+}
+#bd .admin_main .left_bar {
+  background:#eeeeee;
+  padding:40px 0 20px 20px;
+  position:absolute;
+  left:0;
+  top:0;
+  width:180px;
+  border-right:1px solid #a2a2a2;
+  border-bottom:1px solid #6f6f6f;
+  height:900px;
+}
+#bd .admin_main .left_bar .nav li a { padding:5px 10px 5px 15px; }
+#bd .admin_main .left_bar .nav .nav-header {
+  font-size:18px;
+  color:#666666;
+  padding-bottom:10px;
+}
+#bd .admin_main .left_bar .nav .active a {
+  background:#a2a2a2;
+  color:#ffffff;
+}
+#bd .admin_main .right_bd {
+  padding:20px 0 0 40px;
+  margin-left:230px;
+  width:70%;
+}
+#bd .admin_main .right_bd .user_handler { padding:0 0 10px 0; }
+#bd .admin_main .right_bd .user_handler .dropdown-menu { width:150px; }
+#ft .login_ft {
+  background:#2a2a2a;
+  padding:20px 0;
+  color:#666666;
+  text-align:center;
+}
+#ft .login_ft a { color:#cccccc; }
+#ft .login_ft_shadow {
+  height:21px;
+  background:url(../img/login/ft_shadow.jpg) repeat-x;
+}
+.sbs_icon { background:url(../img/icon.png) no-repeat; }
+.tel_icon {
+  background:url(../img/icon.png) no-repeat 0 -29px;
+  height:20px;
+  text-indent:18px;
+}
+.weibo_icon {
+  background:url(../img/icon.png) no-repeat 0 -53px;
+  text-indent:18px;
+}
+.qq_icon {
+  background:url(../img/icon.png) no-repeat 0 -75px;
+  text-indent:18px;
+}
+.msn_icon {
+  background:url(../img/icon.png) no-repeat 0 -100px;
+  text-indent:18px;
+}
+.mail_icon {
+  background:url(../img/icon.png) no-repeat 0 -123px;
+  text-indent:18px;
+}
