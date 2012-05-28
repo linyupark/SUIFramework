@@ -1,7 +1,17 @@
 {% extends 'layout.html' %}
 
 {% block js %}
-
+<script type="text/javascript">
+var csfolder = function(pj){
+    $.get('{{ _site }}create_folder/'+pj,
+          {folder: $('#'+pj+'_folder').val()},
+          function(resp){
+        if(resp == 'ok'){
+            location.href='{{ _site }}';
+        }
+    });
+};
+</script>
 {% endblock %}
 
 {% block bd %}
@@ -19,6 +29,12 @@
             {% for sub_folder in sub_folders[p.folder] %}
             <li><a href="{{ _site }}{{p.folder}}/{{ sub_folder }}"><span class="icon icon-folder-open"></span> {{ sub_folder }}</a></li>
             {%  endfor %}
+            {% if _login %}
+            <li>
+                <input type="text" id="{{p.folder}}_folder" name="folder_name" value="" style="width: 60%; margin-left: 5%" />
+                <button class="btn btn-mini" onclick="csfolder('{{p.folder}}');"><i class=" icon-plus-sign"></i></button>
+            </li>
+            {% endif %}
             <li class="divider"></li>
             <li><a href="{{ _site }}changelog/{{ p.folder }}"><span class="icon icon-th-list"></span> 修改记录</a></li>
         </ul>

@@ -4,7 +4,7 @@
  * SUIFramework 前端项目工作框架
  * 环境要求 PHP5+ / Apache / SQLite
  * @author linyu@eetop.com
- * @version 1.0
+ * @version 1.1
 **/
 
 # 全局设置
@@ -97,13 +97,28 @@ function custom_not_found_callback()
 
 # 身份校验钩子
 $app->hook('login.required', 'login_required');
-function login_required()
+function project_required()
 {
 	if(!isset($_SESSION[ADMIN_ROLE]))
 	{
 		S::app()->flash('info', '请登录后再进行该操作');
 		S::app()->redirect(SITE_ROOT);
 	}
+}
+
+# 项目校验钩子
+$app->hook('project.check', 'project_check');
+function project_check($project)
+{
+	$project_obj = R::findOne(SUI_TABLENAME, 'folder = ?', array($project));
+	
+	if(!$project_obj)
+	{
+		S::app()->flash('error', '项目不存在');
+		S::app()->redirect(SITE_ROOT);
+	}
+	
+	else return $project_obj;
 }
 
 # 创建项目目录
@@ -243,6 +258,24 @@ function sui_start()
 	echo T::render('home.html', $context);
 }
 
+# 创建新子目录
+$app->get('/create_folder/:project', 'sui_folder');
+function sui_folder($project)
+{
+	if(isset($_SESSION[ADMIN_ROLE]) AND isset($_GET['folder'])){
+		S::app()->applyHook('project.check', $project);
+		
+		$sub_folder = trim($_GET['folder']);
+		$folder_list = fetch_sub_folders($project);
+		if($sub_folder != '' AND !in_array($sub_folder, $folder_list))
+		{
+			sui_create_project($project, $sub_folder);
+			S::app()->flash('success', "子目录{$sub_folder}创建成功");
+			echo 'ok';
+		}
+	}
+}
+
 # 静态文档
 $app->get('/read_page/:page', 'sui_page');
 function sui_page($page)
@@ -296,13 +329,7 @@ function sui_login()
 $app->map('/changelog/:project', 'sui_changelog')->via('GET', 'POST');
 function sui_changelog($project)
 {
-	$project_obj = R::findOne(SUI_TABLENAME, 'folder = ?', array($project));
-	
-	if(!$project_obj)
-	{
-		S::app()->flash('success', '成功退出');
-		S::app()->redirect(SITE_ROOT);
-	}
+	$project_obj = S::app()->applyHook('project.check', $project);
 	
 	$bean = $project.'_changelog';
 	$post = S::app()->request()->post();
