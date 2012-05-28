@@ -97,7 +97,7 @@ function custom_not_found_callback()
 
 # 身份校验钩子
 $app->hook('login.required', 'login_required');
-function project_required()
+function login_required()
 {
 	if(!isset($_SESSION[ADMIN_ROLE]))
 	{
