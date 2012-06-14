@@ -4,13 +4,12 @@
  * SUIFramework 前端项目工作框架
  * 环境要求 PHP5+ / Apache / SQLite
  * @author linyu@eetop.com
- * @version 1.1
 **/
 
 # 全局设置
 define('ROOT', dirname($_SERVER['SCRIPT_FILENAME']).'/');
 define('SITE_ROOT', dirname($_SERVER['SCRIPT_NAME']).'/');
-define('SUI_VERSION', '1.0');
+define('SUI_VERSION', '1.1');
 define('ADMIN_ROLE', 'sui_role');
 define('ADMIN_PASSWORD', 'linyu');								# 管理密码
 define('SUI_TABLENAME', 'sui_projects');						# 存储SUI项目的数据表名称
@@ -208,7 +207,7 @@ function sui_start()
 		$post['name'] = trim(@$post['name']);
 		$post['folder'] = trim(@$post['folder']);
 		
-		if($post['name'] != '' && $post['folder'] != '')
+		if($post['name'] != '' AND $post['folder'] != '')
 		{
 			$is_exist = R::findOne(SUI_TABLENAME,
 								   'name = ? OR folder = ?',
@@ -359,7 +358,7 @@ function sui_changelog($project)
 		$number = $post['number'];
 		$date = isset($log['date']) ? $log['date'] : date('y-m-d H:i');
 		
-		if($content != '' && !isset($log))
+		if($content != '' AND !isset($log))
 		{
 			$log = R::dispense($bean);
 			$number = $post['number'] +1;
@@ -424,7 +423,8 @@ function sui_views($project, $folder=PJ_DEFAULT_FOLDER, $module='')
 	// 根据folder来touch对应的{less}文件
 	touch("{$statics_root}less/main.less");
 	
-	auto_compile_less("{$statics_root}less/main.less", "{$statics_root}css/main.css");
+	auto_compile_less("{$statics_root}less/main.less",
+					  "{$statics_root}css/{$folder}.css");
 	
 	// 路径补足
 	$folder .= '/';
@@ -432,8 +432,8 @@ function sui_views($project, $folder=PJ_DEFAULT_FOLDER, $module='')
 	
 	$context = array(
 		'PROJECT' => $project,
-		'FOLDER' => $folder,
-		'MODULE' => $module,
+		'FOLDER' => str_replace('/', '', $folder),
+		'MODULE' => str_replace('/', '', $module),
 		'NAV' => $nav,
 		'BASE_URL' => SITE_ROOT . "{$project}/{$folder}",
 		'CSS_URL' => $statics . 'css/',
