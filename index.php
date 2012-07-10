@@ -420,11 +420,17 @@ function sui_views($project, $folder=PJ_DEFAULT_FOLDER, $module='')
 	$nav['menu'] = isset($get['menu']) ? $get['menu'] : 1;
 	$nav['tab'] = isset($get['tab']) ? $get['tab'] : 1;
 	
-	// 根据folder来touch对应的{less}文件
-	touch("{$statics_root}less/main.less");
-	
-	auto_compile_less("{$statics_root}less/main.less",
-					  "{$statics_root}css/{$folder}.css");
+	// less2css
+	if(@$get['less'] == ''){
+		$less = "{$statics_root}less/main.less";
+		touch($less);
+		auto_compile_less($less, "{$statics_root}css/{$folder}.css");
+	}
+	elseif(is_string($get['less'])){
+		$less = "{$statics_root}less/".$get['less'].".less";
+		touch($less);
+		auto_compile_less($less, "{$statics_root}css/{$folder}_".$get['less'].".css");
+	}
 	
 	// 路径补足
 	$folder .= '/';
