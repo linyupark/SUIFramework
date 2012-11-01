@@ -287,9 +287,9 @@ function sui_page($page)
 	{
 		$page_file = ROOT.$page.'.log';
 	}
-	if(file_exists(ROOT.$page.'.txt'))
+	if(file_exists(ROOT.$page.'.md'))
 	{
-		$page_file= ROOT.$page.'.txt';
+		$page_file= ROOT.$page.'.md';
 	}
 	if($page_file)
 	{
