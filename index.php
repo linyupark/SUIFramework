@@ -1,5 +1,7 @@
 <?php
 
+ini_set('memory_limit', -1);
+
 /**
  * SUIFramework 前端项目工作框架
  * 环境要求 PHP5+ / Apache / SQLite
@@ -8,7 +10,7 @@
 
 # 全局设置
 define('ROOT', dirname($_SERVER['SCRIPT_FILENAME']).'/');
-define('SITE_ROOT', dirname($_SERVER['SCRIPT_NAME']).'/');
+define('SITE_ROOT', 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME']).'/');
 define('SUI_VERSION', '1.1');
 define('ADMIN_ROLE', 'sui_role');
 define('ADMIN_PASSWORD', 'linyu');								# 管理密码
